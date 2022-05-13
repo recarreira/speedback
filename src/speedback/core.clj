@@ -15,6 +15,9 @@
                     (conj pivot))]
     (partition 2 (interleave group1 group2*))))
 
+(defn move-around
+  [members]
+  (concat [(peek members)] (pop members)))
 
 
 
