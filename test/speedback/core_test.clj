@@ -21,4 +21,11 @@
             [[4 3] [5 2] [1 6]]
             [[3 2] [4 1] [5 6]]
             [[2 1] [3 5] [4 6]]]
-           (core/generate-session-rounds [1 2 3 4 5 6])))))
+           (core/generate-session-rounds [1 2 3 4 5 6]))))
+  (testing "returns rounds for the session with waiting slots given odd number of members"
+    (is (= [[[1 5] [2 4] [3 "waiting"]]
+            [[5 4] [1 3] [2 "waiting"]]
+            [[4 3] [5 2] [1 "waiting"]]
+            [[3 2] [4 1] [5 "waiting"]]
+            [[2 1] [3 5] [4 "waiting"]]]
+           (core/generate-session-rounds [1 2 3 4 5])))))

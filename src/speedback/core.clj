@@ -24,8 +24,11 @@
     (vec (concat [last-but-one] members-but-last-two [pivot]))))
 
 (defn generate-session-rounds
-  [members]
-  (let [number-of-rounds (dec (count members))
+  [input-members]
+  (let [members          (if (odd? (count input-members))
+                           (conj input-members "waiting")
+                           input-members)
+        number-of-rounds (dec (count members))
         process-round    (fn [data _round-number]
                            {:rounds  (conj (:rounds data) (generate-round-pairs (:members data)))
                             :members (move-around (:members data))})]
