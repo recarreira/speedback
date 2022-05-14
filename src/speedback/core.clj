@@ -1,5 +1,7 @@
 (ns speedback.core
-  (:gen-class))
+  (:gen-class)
+  (:require
+   [clojure.string :refer [split]]))
 
 (defn generate-round-pairs
   [members]
@@ -38,6 +40,6 @@
         :rounds)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (let [members (split (get (vec args) 0) #",")]
+    (println (generate-session-rounds members))))
