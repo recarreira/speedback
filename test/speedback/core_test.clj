@@ -29,3 +29,13 @@
             [[3 2] [4 1] [5 "waiting"]]
             [[2 1] [3 5] [4 "waiting"]]]
            (core/generate-session-rounds [1 2 3 4 5])))))
+
+(deftest prettify-session-test
+  (testing "returns readable session separated by rounds and pairs"
+    (is (= "Round 1:\n1 & 5\n2 & 4\n3 & 6\n\nRound 2:\n5 & 4\n1 & 3\n2 & 6\n\nRound 3:\n4 & 3\n5 & 2\n1 & 6\n\nRound 4:\n3 & 2\n4 & 1\n5 & 6\n\nRound 5:\n2 & 1\n3 & 5\n4 & 6"
+           (core/prettify-session
+             [[[1 5] [2 4] [3 6]]
+              [[5 4] [1 3] [2 6]]
+              [[4 3] [5 2] [1 6]]
+              [[3 2] [4 1] [5 6]]
+              [[2 1] [3 5] [4 6]]])))))

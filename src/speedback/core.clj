@@ -1,7 +1,7 @@
 (ns speedback.core
   (:gen-class)
   (:require
-   [clojure.string :refer [split]]))
+   [clojure.string :refer [join split]]))
 
 (defn generate-round-pairs
   [members]
@@ -38,6 +38,12 @@
                 {:members members :rounds []}
                 (range number-of-rounds))
         :rounds)))
+
+(defn prettify-session
+  [session]
+  (let [prettify-pairs (fn [round] (join "\n" (map (fn [pair] (join " & " pair)) round)))
+        prettify-round (fn [index round] (str "Round " (inc index) ":\n" (prettify-pairs round)))]
+   (join "\n\n" (map-indexed prettify-round session))))
 
 (defn -main
   [& args]
