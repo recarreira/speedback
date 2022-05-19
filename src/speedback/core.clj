@@ -53,4 +53,7 @@
 (defn -main
   [& args]
   (let [members (split (get (vec args) 0) #",")]
-    (println (generate-session-rounds members))))
+    (-> members
+        generate-session-rounds
+        prettify-session
+        println)))
