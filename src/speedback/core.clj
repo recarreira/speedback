@@ -41,9 +41,14 @@
 
 (defn prettify-session
   [session]
-  (let [prettify-pairs (fn [round] (join "\n" (map (fn [pair] (join " & " pair)) round)))
-        prettify-round (fn [index round] (str "Round " (inc index) ":\n" (prettify-pairs round)))]
-   (join "\n\n" (map-indexed prettify-round session))))
+  (let [prettify-pairs (fn [round] (->> round
+                                        (map #(join " & " %))
+                                        (join "\n")))
+        prettify-round (fn [index round]
+                         (str "Round " (inc index) ":\n" (prettify-pairs round)))]
+   (->> session
+        (map-indexed prettify-round)
+        (join "\n\n"))))
 
 (defn -main
   [& args]
