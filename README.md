@@ -48,7 +48,7 @@ Dona Nina - Gigi
 
 ```
 
-But Zelda said she is busy saving hyrule with Link (she is actually sleeping in the closet, that lazy cat). Now we have and odd number os participants.
+But Zelda said she is busy saving hyrule with Link (she is actually sleeping in the closet, that lazy cat). Now we have and odd number of participants.
 
 ### Given odd number of participants
 
