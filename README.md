@@ -1,44 +1,89 @@
 # speedback
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Just a simple script to generate all speed feedback sessions pairs, given participants.
 
 ## Usage
 
-FIXME: explanation
+The program expect a list of participants separated by `,`
 
-    $ java -jar speedback-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
+    $ lein run "person 1,person 2,person 3,..."
 
 ## Examples
 
-...
+Ok, let's pretend I'll have a speed feedback session with all my pets.
 
-### Bugs
+### Given even number of participants
 
-...
+Input:
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+    $ lein run "Renata,Princesa Zelda,Docinho,Dona Nina,Lady,Gigi"
 
-## License
+Output:
 
-Copyright © 2022 FIXME
+```
+Round 1:
+Renata - Lady
+Princesa Zelda - Dona Nina
+Docinho - Gigi
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+Round 2:
+Lady - Dona Nina
+Renata - Docinho
+Princesa Zelda - Gigi
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+Round 3:
+Dona Nina - Docinho
+Lady - Princesa Zelda
+Renata - Gigi
+
+Round 4:
+Docinho - Princesa Zelda
+Dona Nina - Renata
+Lady - Gigi
+
+Round 5:
+Princesa Zelda - Renata
+Docinho - Lady
+Dona Nina - Gigi
+
+```
+
+But Zelda said she is busy saving hyrule with Link (she is actually sleeping in the closet, that lazy cat). Now we have and odd number os participants.
+
+### Given odd number of participants
+
+Every round we'll have a different participant just waiting.
+
+Input:
+
+     $ lein run "Renata,Docinho,Dona Nina,Lady,Gigi" 
+
+Output:
+
+```
+Round 1:
+Renata - Gigi
+Docinho - Lady
+Dona Nina - waiting
+
+Round 2:
+Gigi - Lady
+Renata - Dona Nina
+Docinho - waiting
+
+Round 3:
+Lady - Dona Nina
+Gigi - Docinho
+Renata - waiting
+
+Round 4:
+Dona Nina - Docinho
+Lady - Renata
+Gigi - waiting
+
+Round 5:
+Docinho - Renata
+Dona Nina - Gigi
+Lady - waiting
+
+```
