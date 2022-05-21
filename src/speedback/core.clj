@@ -1,10 +1,20 @@
 (ns speedback.core
   (:gen-class)
   (:require
-   [clojure.string :refer [join split]]))
+   [clojure.string :refer [join split]]
+   [schema.core :as s]))
 
-(defn generate-round-pairs
-  [members]
+(def Member s/Str)
+
+(def Pair [(s/one Member "first member")
+           (s/one Member "second member")])
+
+(def Round [Pair])
+
+(def Session [Round])
+
+(s/defn generate-round-pairs :- Round
+  [members :- [Member]]
   (let [number-of-pairs  (-> members
                              count
                              (/ 2)
@@ -18,15 +28,15 @@
                              (conj pivot))]
     (partition 2 (interleave group1 group2*))))
 
-(defn move-around
-  [members]
+(s/defn move-around :- [Member]
+  [members :- [Member]]
   (let [[last-but-one pivot] (take-last 2 members)
         members-but-last-two (drop-last 2 members)]
 
     (vec (concat [last-but-one] members-but-last-two [pivot]))))
 
-(defn generate-session-rounds
-  [input-members]
+(s/defn generate-session-rounds :- Session
+  [input-members :- [Member]]
   (let [members          (if (odd? (count input-members))
                            (conj input-members "waiting")
                            input-members)
@@ -39,8 +49,8 @@
                 (range number-of-rounds))
         :rounds)))
 
-(defn prettify-session
-  [session]
+(s/defn prettify-session :- s/Str
+  [session :- Session]
   (let [prettify-pairs (fn [round] (->> round
                                         (map #(join " - " %))
                                         (join "\n")))
