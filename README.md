@@ -46,6 +46,11 @@ Princesa Zelda - Renata
 Docinho - Lady
 Dona Nina - Gigi
 
+The total duration of this session is 59min, given:
+5min introduction
+10min exchanging feedback per pair
+1min switching beetween pairs
+
 ```
 
 But Zelda said she is busy saving hyrule with Link (she is actually sleeping in the closet, that lazy cat). Now we have and odd number of participants.
@@ -85,5 +90,10 @@ Round 5:
 Docinho - Renata
 Dona Nina - Gigi
 Lady - waiting
+
+The total duration of this session is 59min, given:
+5min introduction
+10min exchanging feedback per pair
+1min switching beetween pairs
 
 ```
