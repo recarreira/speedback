@@ -46,10 +46,11 @@ Princesa Zelda - Renata
 Docinho - Lady
 Dona Nina - Gigi
 
-The total duration of this session is 59min, given:
-5min introduction
-10min exchanging feedback per pair
-1min switching beetween pairs
+Total duration - 59min
+Given:
+Introduction - 5min
+Time per pair - 10min
+Time switching pairs - 1min per round
 
 ```
 
@@ -91,9 +92,10 @@ Docinho - Renata
 Dona Nina - Gigi
 Lady - waiting
 
-The total duration of this session is 59min, given:
-5min introduction
-10min exchanging feedback per pair
-1min switching beetween pairs
+Total duration - 59min
+Given:
+Introduction - 5min
+Time per pair - 10min
+Time switching pairs - 1min per round
 
 ```
