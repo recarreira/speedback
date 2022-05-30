@@ -36,5 +36,4 @@
    (is (= 10
         (:pair (duration/durations-by-total-time 60 6)))))
   (testing "throws an exception when pair time is less than 1"
-    (is (thrown-with-msg? Exception #"Not enough time")
-        (duration/durations-by-total-time 4 6))))
+    (is (thrown-with-msg? Exception #"Not enough time" (duration/durations-by-total-time 4 6)))))
