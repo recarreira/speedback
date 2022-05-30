@@ -1,6 +1,7 @@
 (ns speedback.duration
   (:require [schema.core :as s]
-            [speedback.aux :as aux]))
+            [speedback.aux :as aux]
+            [speedback.duration :as duration]))
 
 (def Durations
   {:total        s/Int
@@ -9,22 +10,38 @@
    :swap         s/Int})
 
 (def default-introduction-time 5)
-
 (def default-swap-time 1)
+(def default-pair-time 10)
+
 
 (s/defn ^:private calculates-total-swap-time :- s/Int
   [number-of-rounds :- s/Int]
   (* default-swap-time (dec number-of-rounds)))
 
-(s/defn suggested-duration :- s/Int
+(s/defn suggested-duration :- Durations
   [number-of-members :- s/Int]
   (let [number-of-rounds (aux/calculates-number-of-rounds number-of-members)
         total-swap-time  (calculates-total-swap-time number-of-rounds)
-        time-per-pair    10]
-    (-> number-of-rounds
-        (* time-per-pair)
-        (+ default-introduction-time)
-        (+ total-swap-time))))
+        total-duration   (-> number-of-rounds
+                            (* default-pair-time)
+                            (+ default-introduction-time)
+                            (+ total-swap-time))]
+    {:total total-duration
+     :introduction default-introduction-time
+     :swap default-swap-time
+     :pair default-pair-time}))
+
+(s/defn prettify-duration :- s/Str
+  [durations :- Durations]
+  (format "\nThe total duration of this session is %dmin, given:\n%dmin introduction\n%dmin exchanging feedback per pair\n%dmin switching beetween pairs"
+          (:total durations)
+          (:introduction durations)
+          (:pair durations)
+          (:swap durations)))
+
+(s/defn ^:private validate-pair-time
+  [pair-time :- s/Int]
+  (when (< pair-time 1) (throw (Exception. "Not enough time"))))
 
 (s/defn durations-by-total-time :- Durations
   [total-time :- s/Int
@@ -34,8 +51,8 @@
         pair-time (-> total-time
                       (- default-introduction-time)
                       (- total-swap-time)
-                      (/ number-of-rounds)
-                      (int))]
+                      (quot number-of-rounds))]
+    (validate-pair-time pair-time)
     {:total total-time
      :introduction default-introduction-time
      :swap default-swap-time

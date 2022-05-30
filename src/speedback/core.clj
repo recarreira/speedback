@@ -2,7 +2,8 @@
   (:gen-class)
   (:require
    [clojure.string :refer [join split]]
-   [schema.core :as s]))
+   [schema.core :as s]
+   [speedback.duration :as duration]))
 
 (def Member s/Str)
 
@@ -66,4 +67,9 @@
     (-> members
         generate-session-rounds
         prettify-session
+        println)
+    (-> members
+        count
+        duration/suggested-duration
+        duration/prettify-duration
         println)))
