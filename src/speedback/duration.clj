@@ -33,7 +33,7 @@
 
 (s/defn prettify-duration :- s/Str
   [durations :- Durations]
-  (format "\nThe total duration of this session is %dmin, given:\n%dmin introduction\n%dmin exchanging feedback per pair\n%dmin switching beetween pairs"
+  (format "\nTotal duration - %dmin\nGiven:\nIntroduction - %dmin\nTime per pair - %dmin\nTime switching pairs - %dmin per round"
           (:total durations)
           (:introduction durations)
           (:pair durations)

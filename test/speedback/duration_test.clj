@@ -19,11 +19,11 @@
 
 (deftest prettify-duration-test
   (testing "returns explained suggested duration as string"
-    (is (= "\nThe total duration of this session is 59min, given:\n5min introduction\n10min exchanging feedback per pair\n1min switching beetween pairs"
-           (duration/prettify-duration {:total 59
-                                        :introduction 5
-                                        :pair 10
-                                        :swap 1})))))
+    (is (= "\nTotal duration - 59min\nGiven:\nIntroduction - 5min\nTime per pair - 10min\nTime switching pairs - 1min per round"
+             (duration/prettify-duration {:total 59
+                                          :introduction 5
+                                          :pair 10
+                                          :swap 1})))))
 
 (deftest durations-by-total-time-test
   (testing "returns the duration per pair given total time and number participants"
